@@ -16,11 +16,14 @@ export async function createCard(req:Request, res:Response){
     const validation = cardSchema.validate(cardData);
     if (validation.error) {
     return res.status(422).send(validation.error.message);
-  }  
-  
-
-  //const cardData={employeeId,number,cardholderName,securityCode,expirationDate,password,isVirtual,originalCardId,isBlocked,type}
+  }   
   await cardService.createCard(cardData);
   res.sendStatus(201);
+
+}
+
+export async function activateCard(req:Request, res:Response){
+  const cardData=req.body;
+
 
 }

@@ -18,9 +18,7 @@ export async function createCard(cardData:cardRepository.CardInsertData){
     const securityCode = faker.finance.creditCardCVV();
 
     const securityCodeHash:string = bcrypt.hashSync(securityCode, 10);
-    const employeeId=cardData.employeeId
-
-    
+    const employeeId=cardData.employeeId    
 
       
    await cardRepository.insert({ 
@@ -32,7 +30,7 @@ export async function createCard(cardData:cardRepository.CardInsertData){
     password: cardData.password,
     isVirtual: cardData.isVirtual,
     originalCardId: cardData.originalCardId,
-    isBlocked:false,
+    isBlocked:true,
     type:cardData.type});
 }
 async function searchForRegisteredEmployee(employeeId:number){
@@ -71,6 +69,10 @@ function createCardName(cardholderName:string){
 
     return nameForCard;
 
+}
+
+export async function activateCard(){
+    
 }
 
 
